@@ -1,0 +1,26 @@
+language: c
+dist: xenial
+python: '3.7'
+sudo: true
+
+cache: ccache
+
+addons:
+  apt:
+    packages:
+      - build-essential
+      - uuid-dev
+      - iasl
+      - git
+      - gcc
+      - nasm
+      - python3-distutils-extra
+
+before_script:
+  - pyenv local 3.7
+  - cp .ci/target_ovmf-x64-tpm2.txt Conf/target.txt
+  - . ./edksetup.sh
+
+script:
+  - make -C BaseTools
+  - build -D TPM2_ENABLE=TRUE -D TPM2_CONFIG_ENABLE=TRUE
