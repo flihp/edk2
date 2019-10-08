@@ -1,0 +1,171 @@
+## @file
+#
+# This library implements the TCG TSS 2.0 System API specification.
+# It provides a programming interface to all commands from Part 3 of the
+# TPM2 library specification.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 1.27
+  BASE_NAME                      = Tpm2TssSysLib
+  FILE_GUID                      = 15D7D2C9-1D58-44D7-8312-BDE44357F877
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = Tpm2TssSysLib
+  DEFINE TPM2TSS_PATH            = tpm2-tss
+  DEFINE TPM2TSS_FLAGS           = -std=c99 -DMAXLOGLEVEL=0 -DLOCAL_ENDIAN -DHAVE_UINT8 -DHAVE_INT8 -DHAVE_BOOL -DHAVE_UINT16 -DHAVE_INT16 -DHAVE_UINT32 -DHAVE_INT32 -DHAVE_UINT64 -DHAVE_INT64
+
+[Sources]
+  string.h
+  $(TPM2TSS_PATH)/include/tss2/tss2_common.h
+  $(TPM2TSS_PATH)/include/tss2/tss2_tpm2_types.h
+  $(TPM2TSS_PATH)/include/tss2/tss2_mu.h
+  $(TPM2TSS_PATH)/include/tss2/tss2_sys.h
+  $(TPM2TSS_PATH)/include/tss2/tss2_tcti.h
+  $(TPM2TSS_PATH)/src/util/log.h
+  $(TPM2TSS_PATH)/src/tss2-sys/sysapi_util.h
+  $(TPM2TSS_PATH)/src/tss2-sys/sysapi_util.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_AC_GetCapability.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_AC_Send.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ActivateCredential.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Certify.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_CertifyCreation.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ChangeEPS.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ChangePPS.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Clear.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ClearControl.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ClockRateAdjust.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ClockSet.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Commit.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ContextLoad.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ContextSave.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Create.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_CreateLoaded.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_CreatePrimary.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_DictionaryAttackLockReset.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_DictionaryAttackParameters.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Duplicate.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ECC_Parameters.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ECDH_KeyGen.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ECDH_ZGen.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_EC_Ephemeral.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_EncryptDecrypt.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_EncryptDecrypt2.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_EventSequenceComplete.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_EvictControl.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Execute.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_FieldUpgradeData.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_FieldUpgradeStart.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Finalize.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_FirmwareRead.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_FlushContext.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetCapability.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetCommandAuditDigest.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetCommandCode.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetContextSize.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetCpBuffer.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetDecryptParam.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetEncryptParam.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetRandom.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetRpBuffer.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetRspAuths.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetSessionAuditDigest.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetTctiContext.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetTestResult.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_GetTime.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_HMAC.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_HMAC_Start.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Hash.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_HashSequenceStart.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_HierarchyChangeAuth.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_HierarchyControl.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Import.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_IncrementalSelfTest.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Initialize.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Load.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_LoadExternal.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_MakeCredential.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_Certify.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_ChangeAuth.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_DefineSpace.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_Extend.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_GlobalWriteLock.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_Increment.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_Read.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_ReadLock.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_ReadPublic.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_SetBits.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_UndefineSpace.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_UndefineSpaceSpecial.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_Write.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_NV_WriteLock.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ObjectChangeAuth.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PCR_Allocate.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PCR_Event.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PCR_Extend.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PCR_Read.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PCR_Reset.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PCR_SetAuthPolicy.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PCR_SetAuthValue.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PP_Commands.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyAuthValue.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyAuthorize.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyAuthorizeNV.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyCommandCode.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyCounterTimer.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyCpHash.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyDuplicationSelect.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyGetDigest.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyLocality.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyNV.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyNameHash.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyNvWritten.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyOR.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyPCR.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyPassword.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyPhysicalPresence.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyRestart.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicySecret.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicySigned.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyTemplate.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_PolicyTicket.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Policy_AC_SendSelect.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Quote.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_RSA_Decrypt.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_RSA_Encrypt.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ReadClock.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ReadPublic.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Rewrap.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_SelfTest.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_SequenceComplete.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_SequenceUpdate.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_SetAlgorithmSet.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_SetCmdAuths.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_SetCommandCodeAuditStatus.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_SetDecryptParam.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_SetEncryptParam.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_SetPrimaryPolicy.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Shutdown.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Sign.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_StartAuthSession.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Startup.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_StirRandom.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_TestParms.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Unseal.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_Vendor_TCG_Test.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_VerifySignature.c
+  $(TPM2TSS_PATH)/src/tss2-sys/api/Tss2_Sys_ZGen_2Phase.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Tpm2TssPkg/Tpm2TssPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  Tpm2TssMuLib
+
+[BuildOptions]
+  GCC:*_*_*_CC_FLAGS = $(TPM2TSS_FLAGS)

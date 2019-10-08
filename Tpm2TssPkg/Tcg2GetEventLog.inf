@@ -1,0 +1,38 @@
+## @file
+#
+# This example UEFI application uses the TCG2 UEFI protocol to get the TCG2
+# eventlog. This data is then displayed in the shell.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 1.27
+  BASE_NAME                      = Tcg2GetEventLog
+  FILE_GUID                      = F5AB0E16-B0E2-4C87-9EFD-CC38CD892C55
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 0.1
+  ENTRY_POINT                    = efi_main
+  DEFINE TCTIUEFI_PATH           = tpm2-tcti-uefi
+  DEFINE TCTIUEFI_FLAGS          = -DEDK2_BUILD -DHAVE_UINT8 -DHAVE_INT8 -DHAVE_BOOL -DHAVE_UINT16 -DHAVE_INT16 -DHAVE_UINT32 -DHAVE_INT32 -DHAVE_UINT64 -DHAVE_INT64
+
+[Sources]
+  $(TCTIUEFI_PATH)/example/tcg2-get-eventlog.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Tpm2TssPkg/Tpm2TssPkg.dec
+  ShellPkg/ShellPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PrintLib
+  ShellCommandLib
+  Tpm2TssTcg2UtilLib
+  Tpm2TssUefiExampleLib
+  UefiApplicationEntryPoint
+  UefiLib
+
+[BuildOptions]
+  GCC:*_*_*_CC_FLAGS = $(TCTIUEFI_FLAGS)

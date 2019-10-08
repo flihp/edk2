@@ -1,0 +1,33 @@
+## @file
+#
+# This is a utility library used by other Tpm2Tss libraries. It should not
+# be used outside of this context.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 1.27
+  BASE_NAME                      = Tpm2TssUtilLib
+  FILE_GUID                      = 33244FAA-6922-4F57-8996-34C316FCBB22
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = Tpm2TssUtilLib
+  DEFINE TPM2TSS_PATH            = tpm2-tss
+  DEFINE TPM2TSS_FLAGS           = -std=c99 -DMAXLOGLEVEL=0
+
+[Sources]
+  string.h
+  $(TPM2TSS_PATH)/src/util/log.h
+  $(TPM2TSS_PATH)/src/util/log.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Tpm2TssPkg/Tpm2TssPkg.dec
+
+[LibraryClasses]
+  BaseLib
+
+[BuildOptions]
+  GCC:*_*_*_CC_FLAGS = $(TPM2TSS_FLAGS)

@@ -1,0 +1,39 @@
+## @file
+#
+# This library hosts a few functions useful for setting up and tearing
+# down the parts of the TPM2 software stack necessary for communicating
+# with TPM2 from UEFI. It is used by the example applications provided in
+# the Tpm2TssPkg.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 1.27
+  BASE_NAME                      = Tpm2TssUefiUtilLib
+  FILE_GUID                      = B5A506F2-B3A7-46CF-B4BE-B3A92A95401C
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = Tpm2TssUefiUtilLib
+  DEFINE TCTIUEFI_PATH           = tpm2-tcti-uefi
+  DEFINE TCTIUEFI_FLAGS          = -DEDK2_BUILD -DHAVE_UINT8 -DHAVE_INT8 -DHAVE_BOOL -DHAVE_UINT16 -DHAVE_INT16 -DHAVE_UINT32 -DHAVE_INT32 -DHAVE_UINT64 -DHAVE_INT64
+
+[Sources]
+  $(TCTIUEFI_PATH)/example/tss2-util.h
+  $(TCTIUEFI_PATH)/example/tss2-util.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+  Tpm2TssPkg/Tpm2TssPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PrintLib
+  MemoryAllocationLib
+  UefiLib
+  Tpm2TssTctiUefiLib
+
+[BuildOptions]
+  GCC:*_*_*_CC_FLAGS = $(TCTIUEFI_FLAGS)

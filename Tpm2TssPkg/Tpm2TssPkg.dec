@@ -1,0 +1,35 @@
+## @file
+#
+# This package provides libraries implementing the lower layers of the TPM2
+# software stack appropriate for use in UEFI. Currently this includes the
+# type marshaling API, the system API and a TCTI specific to UEFI built on
+# top of the TCG2 protocol. A number of example UEFI applications are
+# provided as well to demonstrate use of these libraries.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 1.27
+  PACKAGE_NAME                   = Tpm2TssPkg
+  PACKAGE_GUID                   = A7C67FAD-6FC1-478D-B5C0-918758C5EF05
+  PACKAGE_VERSION                = 0.1
+  DEFINE TCTIUEFI_PATH           = tpm2-tcti-uefi
+  DEFINE TPM2TSS_PATH            = tpm2-tss
+
+[Includes]
+  $(TCTIUEFI_PATH)/src
+  $(TPM2TSS_PATH)/include/
+
+[Includes.common.private]
+  $(TPM2TSS_PATH)/src
+
+[LibraryClasses]
+  Tpm2TssMuLib|$(TPM2TSS_PATH)/include/tss2-mu.h
+  Tpm2TssSysLib|$(TPM2TSS_PATH)/include/tss2/tss2_sys.h
+  Tpm2TssUtilLib|$(TPM2TSS_PATH)/src/util/log.h
+  Tpm2TssTcg2UtilLib|$(TCTIUEFI_PATH)/src/tcg2-util.h
+  Tpm2TssTctiUefiLib|$(TCTIUEFI_PATH)/src/tss2-tcti-uefi.h
+  Tpm2TssUefiExampleLib|$(TCTIUEFI_PATH)/example/util.h
+  Tpm2TssUefiUtilLib|$(TCTIUEFI_PATH)/example/tss2-util.h

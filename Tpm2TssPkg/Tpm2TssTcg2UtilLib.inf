@@ -1,0 +1,36 @@
+## @file
+#
+# This library is collection of functions that simplify interaction with the
+# TCG2 UEFI protocol driver. This library is used by the UEFI TCTI and the
+# example applications from the same repo. It should not be used outside this
+# context.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 1.27
+  BASE_NAME                      = Tpm2TssTcg2UtilLib
+  FILE_GUID                      = 4A8BCBD9-97E8-49C0-93C2-B2025C9FD283
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = Tpm2TssTcg2UtilLib
+  DEFINE TCTIUEFI_PATH           = tpm2-tcti-uefi
+  DEFINE TCTIUEFI_FLAGS          = -DEDK2_BUILD -DHAVE_UINT8 -DHAVE_INT8 -DHAVE_BOOL -DHAVE_UINT16 -DHAVE_INT16 -DHAVE_UINT32 -DHAVE_INT32 -DHAVE_UINT64 -DHAVE_INT64
+
+[Sources]
+  $(TCTIUEFI_PATH)/src/uefi-types.h
+  $(TCTIUEFI_PATH)/src/tcg2-protocol.h
+  $(TCTIUEFI_PATH)/src/tcg2-util.h
+  $(TCTIUEFI_PATH)/src/tcg2-util.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Tpm2TssPkg/Tpm2TssPkg.dec
+
+[LibraryClasses]
+  BaseLib
+
+[BuildOptions]
+  GCC:*_*_*_CC_FLAGS = $(TCTIUEFI_FLAGS)

@@ -1,0 +1,38 @@
+## @file
+#
+# This library implements the TCG TSS 2.0 TPM Command Transmission Interface
+# (TCTI) API specification. The implementation uses the TCG2 UEFI protocol
+# driver to send commands and receive responses from the TPM2 device. The
+# TCTI API exposed is then used by higher layers of the TSS2 (like the
+# System API) to transport commands and responses as required.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 1.27
+  BASE_NAME                      = Tpm2TssTctiUefiLib
+  FILE_GUID                      = E3279605-D9BF-4ACE-AFAE-7B42CD0EEF4B
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = Tpm2TssTctiUefiLib
+  DEFINE TCTIUEFI_PATH           = tpm2-tcti-uefi
+  DEFINE TCTIUEFI_FLAGS          = -DEDK2_BUILD -DHAVE_UINT8 -DHAVE_INT8 -DHAVE_BOOL -DHAVE_UINT16 -DHAVE_INT16 -DHAVE_UINT32 -DHAVE_INT32 -DHAVE_UINT64 -DHAVE_INT64
+
+[Sources]
+  $(TCTIUEFI_PATH)/src/uefi-types.h
+  $(TCTIUEFI_PATH)/src/tcg2-protocol.h
+  $(TCTIUEFI_PATH)/src/tcti-uefi.h
+  $(TCTIUEFI_PATH)/src/tcti-uefi.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Tpm2TssPkg/Tpm2TssPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  Tpm2TssTcg2UtilLib
+
+[BuildOptions]
+  GCC:*_*_*_CC_FLAGS = $(TCTIUEFI_FLAGS)

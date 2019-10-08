@@ -1,0 +1,41 @@
+## @file
+#
+# This library is collection of functions shared across the example UEFI
+# applications packaged with the UEFI TCTI from the tpm2-tcti-uefi project.
+# It is not intended for use outside this context.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 1.27
+  BASE_NAME                      = Tpm2TssUefiExampleLib
+  FILE_GUID                      = 539D601D-C3F7-4B10-A343-4E46FE6CC054
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = Tpm2TssUefiExampleLib
+  DEFINE TCTIUEFI_PATH           = tpm2-tcti-uefi
+  DEFINE TCTIUEFI_FLAGS          = -DEDK2_BUILD -DHAVE_UINT8 -DHAVE_INT8 -DHAVE_BOOL -DHAVE_UINT16 -DHAVE_INT16 -DHAVE_UINT32 -DHAVE_INT32 -DHAVE_UINT64 -DHAVE_INT64
+
+[Sources]
+  $(TCTIUEFI_PATH)/example/util.h
+  $(TCTIUEFI_PATH)/example/util.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+  Tpm2TssPkg/Tpm2TssPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  PrintLib
+  MemoryAllocationLib
+  ShellCommandLib
+  Tpm2TssTctiUefiLib
+  Tpm2TssTcg2UtilLib
+  Tpm2TssUefiUtilLib
+  UefiLib
+
+[BuildOptions]
+  GCC:*_*_*_CC_FLAGS = $(TCTIUEFI_FLAGS)

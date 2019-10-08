@@ -1,0 +1,46 @@
+## @file
+#
+# This library implements the TCG TSS 2.0 Marshaling / Unmarshaling API
+# specification. It is used primarily in the translation of TPM2 C types
+# / structures to TPM2 command and response buffers.
+#
+# Copyright (c) 2019, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 1.27
+  BASE_NAME                      = Tpm2TssMuLib
+  FILE_GUID                      = 56CC29D8-82AC-43CB-9E61-E682D375F9B0
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = Tpm2TssMuLib
+  DEFINE TPM2TSS_PATH            = tpm2-tss
+  DEFINE TPM2TSS_FLAGS           = -std=c99 -DMAXLOGLEVEL=0 -DLOCAL_ENDIAN -DHAVE_UINT8 -DHAVE_INT8 -DHAVE_BOOL -DHAVE_UINT16 -DHAVE_INT16 -DHAVE_UINT32 -DHAVE_INT32 -DHAVE_UINT64 -DHAVE_INT64
+
+[Sources]
+  string.h
+  $(TPM2TSS_PATH)/include/tss2/tss2_common.h
+  $(TPM2TSS_PATH)/include/tss2/tss2_tpm2_types.h
+  $(TPM2TSS_PATH)/include/tss2/tss2_mu.h
+  $(TPM2TSS_PATH)/src/util/tpm2b.h
+  $(TPM2TSS_PATH)/src/util/tss2_endian.h
+  $(TPM2TSS_PATH)/src/tss2-mu/base-types.c
+  $(TPM2TSS_PATH)/src/tss2-mu/tpm2b-types.c
+  $(TPM2TSS_PATH)/src/tss2-mu/tpma-types.c
+  $(TPM2TSS_PATH)/src/tss2-mu/tpml-types.c
+  $(TPM2TSS_PATH)/src/tss2-mu/tpms-types.c
+  $(TPM2TSS_PATH)/src/tss2-mu/tpmt-types.c
+  $(TPM2TSS_PATH)/src/tss2-mu/tpmu-types.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Tpm2TssPkg/Tpm2TssPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  Tpm2TssUtilLib
+
+[BuildOptions]
+  GCC:*_*_*_CC_FLAGS = $(TPM2TSS_FLAGS)
