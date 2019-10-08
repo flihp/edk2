@@ -4,3 +4,7 @@
 [submodule "SoftFloat"]
 	path = ArmPkg/Library/ArmSoftFloatLib/berkeley-softfloat-3
 	url = https://github.com/ucb-bar/berkeley-softfloat-3.git
+[submodule "Tpm2TssPkg/tpm2-tss"]
+	path = Tpm2TssPkg/tpm2-tss
+	url = https://github.com/flihp/tpm2-tss.git
+	branch = edk2-build
