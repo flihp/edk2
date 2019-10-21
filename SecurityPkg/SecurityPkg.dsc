@@ -21,6 +21,8 @@
   Tpm2TssUtilLib|SecurityPkg/Library/Tpm2Tss/Tpm2TssUtilLib.inf
   Tpm2TssMuLib|SecurityPkg/Library/Tpm2Tss/Tpm2TssMuLib.inf
   Tpm2TssSysLib|SecurityPkg/Library/Tpm2Tss/Tpm2TssSysLib.inf
+  Tpm2TssTcg2UtilLib|SecurityPkg/Library/Tpm2Tss/Tpm2TssTcg2UtilLib.inf
+  Tpm2TssTctiUefiLib|SecurityPkg/Library/Tpm2Tss/Tpm2TssTctiUefiLib.inf
   DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
   DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
@@ -189,6 +191,8 @@
   SecurityPkg/Library/Tpm2Tss/Tpm2TssUtilLib.inf
   SecurityPkg/Library/Tpm2Tss/Tpm2TssMuLib.inf
   SecurityPkg/Library/Tpm2Tss/Tpm2TssSysLib.inf
+  SecurityPkg/Library/Tpm2Tss/Tpm2TssTcg2UtilLib.inf
+  SecurityPkg/Library/Tpm2Tss/Tpm2TssTctiUefiLib.inf
 
   #
   # TCG Storage.

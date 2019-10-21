@@ -1,0 +1,31 @@
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+# Copyright (c) 2019, Intel Corporation.
+# All rights reserved.
+
+[Defines]
+  INF_VERSION                    = 1.27
+  BASE_NAME                      = Tpm2TssTctiUefiLib
+  FILE_GUID                      = E3279605-D9BF-4ACE-AFAE-7B42CD0EEF4B
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = Tpm2TssTctiUefiLib
+  DEFINE TCTIUEFI_PATH           = tpm2-tcti-uefi
+  DEFINE TCTIUEFI_FLAGS          = -DEDK2_BUILD -DHAVE_UINT8 -DHAVE_INT8 -DHAVE_BOOL -DHAVE_UINT16 -DHAVE_INT16 -DHAVE_UINT32 -DHAVE_INT32 -DHAVE_UINT64 -DHAVE_INT64
+
+[Sources]
+  $(TCTIUEFI_PATH)/src/tss2-tcti-uefi.h
+  $(TCTIUEFI_PATH)/src/uefi-types.h
+  $(TCTIUEFI_PATH)/src/tcg2-protocol.h
+  $(TCTIUEFI_PATH)/src/tcti-uefi.h
+  $(TCTIUEFI_PATH)/src/tcti-uefi.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SecurityPkg/SecurityPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  Tpm2TssTcg2UtilLib
+
+[BuildOptions]
+  GCC:*_*_*_CC_FLAGS = $(TCTIUEFI_FLAGS)

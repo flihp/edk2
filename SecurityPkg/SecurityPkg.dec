@@ -29,6 +29,7 @@
 [LibraryClasses]
   Tpm2TssMuLib|Library/Tpm2Tss/tpm2-tss/include/tss2_mu.h
   Tpm2TssSysLib|Library/Tpm2Tss/tpm2-tss/include/tss2_sys.h
+  Tpm2TssTctiUefiLib|Library/Tpm2Tss/tpm2-tcti-uefi/src/tss2-tcti-uefi.h
 
   ##  @libraryclass  Provides hash interfaces from different implementations.
   #
