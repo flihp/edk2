@@ -8,3 +8,6 @@
 	path = SecurityPkg/Library/Tpm2Tss/tpm2-tss
 	url = https://github.com/flihp/tpm2-tss
 	branch = edk2-build
+[submodule "SecurityPkg/Library/Tpm2Tss/tpm2-tcti-uefi"]
+	path = SecurityPkg/Library/Tpm2Tss/tpm2-tcti-uefi
+	url = https://github.com/tpm2-software/tpm2-tcti-uefi
