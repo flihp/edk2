@@ -18,6 +18,9 @@
   SKUID_IDENTIFIER               = DEFAULT
 
 [LibraryClasses]
+  Tpm2TssUtilLib|SecurityPkg/Library/Tpm2Tss/Tpm2TssUtilLib.inf
+  Tpm2TssMuLib|SecurityPkg/Library/Tpm2Tss/Tpm2TssMuLib.inf
+  Tpm2TssSysLib|SecurityPkg/Library/Tpm2Tss/Tpm2TssSysLib.inf
   DebugLib|MdePkg/Library/BaseDebugLibNull/BaseDebugLibNull.inf
   DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
@@ -182,6 +185,10 @@
   SecurityPkg/Library/Tpm2DeviceLibRouter/Tpm2DeviceLibRouterPei.inf
 
   SecurityPkg/Library/HashLibTpm2/HashLibTpm2.inf
+
+  SecurityPkg/Library/Tpm2Tss/Tpm2TssUtilLib.inf
+  SecurityPkg/Library/Tpm2Tss/Tpm2TssMuLib.inf
+  SecurityPkg/Library/Tpm2Tss/Tpm2TssSysLib.inf
 
   #
   # TCG Storage.
