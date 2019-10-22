@@ -193,6 +193,7 @@
   SecurityPkg/Library/Tpm2Tss/Tpm2TssSysLib.inf
   SecurityPkg/Library/Tpm2Tss/Tpm2TssTcg2UtilLib.inf
   SecurityPkg/Library/Tpm2Tss/Tpm2TssTctiUefiLib.inf
+  SecurityPkg/Library/Tpm2Tss/Tcg2GetCaps.inf
 
   #
   # TCG Storage.
