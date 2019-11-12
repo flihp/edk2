@@ -195,6 +195,8 @@ typedef UINT16 TPM_ALG_ID;
 #define TPM_ALG_KDF1_SP800_108 (TPM_ALG_ID)(0x0022)
 #define TPM_ALG_ECC            (TPM_ALG_ID)(0x0023)
 #define TPM_ALG_SYMCIPHER      (TPM_ALG_ID)(0x0025)
+#define TPM_ALG_CAMELLIA       (TPM_ALG_ID)(0x0026)
+#define TPM_ALG_CMAC           (TPM_ALG_ID)(0x003F)
 #define TPM_ALG_CTR            (TPM_ALG_ID)(0x0040)
 #define TPM_ALG_OFB            (TPM_ALG_ID)(0x0041)
 #define TPM_ALG_CBC            (TPM_ALG_ID)(0x0042)
@@ -709,6 +711,8 @@ typedef TPM_HANDLE TPM_HC;
 // 8 Attribute Structures
 
 // Table 29 - TPMA_ALGORITHM Bits
+typedef UINT32 TPMA_ALGORITHM;
+/*
 typedef struct {
   UINT32 asymmetric    : 1;
   UINT32 symmetric     : 1;
@@ -720,8 +724,11 @@ typedef struct {
   UINT32 method        : 1;
   UINT32 reserved11_31 : 21;
 } TPMA_ALGORITHM;
+*/
 
 // Table 30 - TPMA_OBJECT Bits
+typedef UINT32 TPMA_OBJECT;
+/*
 typedef struct {
   UINT32 reserved1            : 1;
   UINT32 fixedTPM             : 1;
@@ -740,8 +747,11 @@ typedef struct {
   UINT32 sign                 : 1;
   UINT32 reserved19_31        : 13;
 } TPMA_OBJECT;
+*/
 
 // Table 31 - TPMA_SESSION Bits
+typedef UINT8 TPMA_SESSION;
+/*
 typedef struct {
   UINT8 continueSession : 1;
   UINT8 auditExclusive  : 1;
@@ -751,11 +761,13 @@ typedef struct {
   UINT8 encrypt         : 1;
   UINT8 audit           : 1;
 } TPMA_SESSION;
-
+*/
 // Table 32 - TPMA_LOCALITY Bits
 //
 // NOTE: Use low case here to resolve conflict
 //
+typedef UINT8 TPMA_LOCALITY;
+/*
 typedef struct {
   UINT8 locZero  : 1;
   UINT8 locOne   : 1;
@@ -764,8 +776,11 @@ typedef struct {
   UINT8 locFour  : 1;
   UINT8 Extended : 3;
 } TPMA_LOCALITY;
+*/
 
 // Table 33 - TPMA_PERMANENT Bits
+typedef UINT32 TPMA_PERMANENT;
+/*
 typedef struct {
   UINT32 ownerAuthSet       : 1;
   UINT32 endorsementAuthSet : 1;
@@ -776,8 +791,11 @@ typedef struct {
   UINT32 tpmGeneratedEPS    : 1;
   UINT32 reserved11_31      : 21;
 } TPMA_PERMANENT;
+*/
 
 // Table 34 - TPMA_STARTUP_CLEAR Bits
+typedef UINT32 TPMA_STARTUP_CLEAR;
+/*
 typedef struct {
   UINT32 phEnable     : 1;
   UINT32 shEnable     : 1;
@@ -785,6 +803,7 @@ typedef struct {
   UINT32 reserved3_30 : 28;
   UINT32 orderly      : 1;
 } TPMA_STARTUP_CLEAR;
+*/
 
 // Table 35 - TPMA_MEMORY Bits
 typedef struct {
@@ -795,6 +814,8 @@ typedef struct {
 } TPMA_MEMORY;
 
 // Table 36 - TPMA_CC Bits
+typedef UINT32 TPMA_CC;
+/*
 typedef struct {
   UINT32 commandIndex  : 16;
   UINT32 reserved16_21 : 6;
@@ -806,6 +827,7 @@ typedef struct {
   UINT32 V             : 1;
   UINT32 Res           : 2;
 } TPMA_CC;
+*/
 
 // 9 Interface Types
 
@@ -1112,6 +1134,12 @@ typedef struct {
 } TPML_ECC_CURVE;
 
 // Table 103 - TPMU_CAPABILITIES Union
+#define TPM2_MAX_CAP_BUFFER     1024
+#define TPM2_MAX_PTT_PROPERTIES (TPM2_MAX_CAP_BUFFER / sizeof(UINT32))
+typedef struct {
+    UINT32 count;
+    UINT32 property[TPM2_MAX_PTT_PROPERTIES];
+} TPML_INTEL_PTT_PROPERTY;
 typedef union {
   TPML_ALG_PROPERTY        algorithms;
   TPML_HANDLE              handles;
@@ -1122,6 +1150,7 @@ typedef union {
   TPML_TAGGED_TPM_PROPERTY tpmProperties;
   TPML_TAGGED_PCR_PROPERTY pcrProperties;
   TPML_ECC_CURVE           eccCurves;
+  TPML_INTEL_PTT_PROPERTY  intelPttProperty;
 } TPMU_CAPABILITIES;
 
 // Table 104 - TPMS_CAPABILITY_DATA Structure
@@ -1243,18 +1272,24 @@ typedef TPM_KEY_BITS TPMI_AES_KEY_BITS;
 // Table 121 - TPMI_SM4_KEY_BITS Type
 typedef TPM_KEY_BITS TPMI_SM4_KEY_BITS;
 
+/* Definition of  CAMELLIA TPM2_KEY_BITS TPMI_CAMELLIA_KEY_BITS   Type */
+typedef TPM_KEY_BITS TPMI_CAMELLIA_KEY_BITS;
+
 // Table 122 - TPMU_SYM_KEY_BITS Union
 typedef union {
   TPMI_AES_KEY_BITS aes;
-  TPMI_SM4_KEY_BITS SM4;
+  TPMI_SM4_KEY_BITS sm4;
+  TPMI_CAMELLIA_KEY_BITS camellia;
   TPM_KEY_BITS      sym;
   TPMI_ALG_HASH     xor;
+  TPMI_ALG_HASH exclusiveOr;
 } TPMU_SYM_KEY_BITS;
 
 // Table 123 - TPMU_SYM_MODE Union
 typedef union {
   TPMI_ALG_SYM_MODE aes;
-  TPMI_ALG_SYM_MODE SM4;
+  TPMI_ALG_SYM_MODE sm4;
+  TPMI_ALG_SYM_MODE camellia;
   TPMI_ALG_SYM_MODE sym;
 } TPMU_SYM_MODE;
 
@@ -1486,7 +1521,7 @@ typedef TPM_ECC_CURVE TPMI_ECC_CURVE;
 // Table 166 - TPMT_ECC_SCHEME Structure
 typedef struct {
   TPMI_ALG_ECC_SCHEME scheme;
-  TPMU_SIG_SCHEME     details;
+  TPMU_ASYM_SCHEME    details;
 } TPMT_ECC_SCHEME;
 
 // Table 167 - TPMS_ALGORITHM_DETAIL_ECC Structure
@@ -1693,6 +1728,8 @@ typedef struct {
 //} TPM_NV_INDEX;
 
 // Table 195 - TPMA_NV Bits
+typedef UINT32 TPMA_NV;
+/*
 typedef struct {
   UINT32 TPMA_NV_PPWRITE        : 1;
   UINT32 TPMA_NV_OWNERWRITE     : 1;
@@ -1721,6 +1758,7 @@ typedef struct {
   UINT32 TPMA_NV_PLATFORMCREATE : 1;
   UINT32 TPMA_NV_READ_STCLEAR   : 1;
 } TPMA_NV;
+*/
 
 // Table 196 - TPMS_NV_PUBLIC Structure
 typedef struct {
